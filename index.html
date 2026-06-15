@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chunky &amp; Co — Cookies Artesanais</title>
+<meta name="description" content="Cookies artesanais grossos e recheados, feitos à mão em pequenos lotes. Peça pelo WhatsApp ou siga a Chunky & Co no Instagram.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%AA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso:#2B1810;
+    --espresso-deep:#1C0F09;
+    --cream:#FBF6EE;
+    --cream-soft:#F1E4D2;
+    --caramel:#CE9760;
+    --caramel-light:#E5B27E;
+    --caramel-deep:#B97C45;
+    --cocoa:#8B5A3C;
+    --choc:#3A1F14;
+ 
+    --font-display:'Fraunces', serif;
+    --font-body:'Plus Jakarta Sans', sans-serif;
+ 
+    --radius:24px;
+  }
+ 
+  *,*::before,*::after{ box-sizing:border-box; }
+ 
+  html{
+    scroll-behavior:smooth;
+    scroll-padding-top:90px;
+  }
+ 
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    background:var(--espresso);
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(206,151,96,0.10), transparent 40%),
+      radial-gradient(circle at 88% 78%, rgba(206,151,96,0.07), transparent 45%);
+    background-attachment:fixed;
+    color:var(--cream);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+ 
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ margin:0; padding:0; list-style:none; }
+ 
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--caramel);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+ 
+  .container{
+    width:100%;
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+ 
+  /* ---------- Typography ---------- */
+  h1,h2,h3,h4{
+    font-family:var(--font-display);
+    font-weight:600;
+    line-height:1.12;
+    margin:0;
+    color:var(--cream);
+  }
+  h1{ font-size:clamp(2.6rem, 6vw, 4.6rem); letter-spacing:-0.01em; }
+  h2{ font-size:clamp(2rem, 4.2vw, 3rem); letter-spacing:-0.01em; }
+  h3{ font-size:1.4rem; }
+  h4{ font-size:1.05rem; }
+  em{ font-style:italic; font-weight:500; color:var(--caramel-light); }
+ 
+  p{ margin:0; }
+ 
+  .eyebrow{
+    font-family:var(--font-body);
+    text-transform:uppercase;
+    font-size:0.78rem;
+    letter-spacing:0.22em;
+    font-weight:700;
+    color:var(--caramel);
+    margin:0 0 14px;
+  }
+ 
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:14px 28px;
+    border-radius:999px;
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:0.95rem;
+    border:1px solid transparent;
+    white-space:nowrap;
+    cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+  }
+  .btn svg{ width:18px; height:18px; flex-shrink:0; }
+  .btn-primary{ background:var(--caramel); color:var(--espresso-deep); }
+  .btn-primary:hover{
+    background:var(--caramel-light);
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px -12px rgba(206,151,96,0.65);
+  }
+  .btn-outline{ border-color:rgba(251,246,238,0.32); color:var(--cream); }
+  .btn-outline:hover{
+    border-color:var(--caramel);
+    color:var(--caramel-light);
+    transform:translateY(-2px);
+  }
+  .cookies .btn-outline, .about .btn-outline{
+    border-color:rgba(43,24,16,0.25); color:var(--espresso-deep);
+  }
+  .cookies .btn-outline:hover, .about .btn-outline:hover{
+    border-color:var(--cocoa); color:var(--cocoa);
+  }
+  .btn-lg{ padding:16px 32px; font-size:1rem; }
+  .btn-sm{ padding:10px 22px; font-size:0.875rem; }
+ 
+  /* ---------- Header ---------- */
+  .site-header{
+    position:sticky; top:0; z-index:60;
+    padding:20px 0;
+    transition:background .3s ease, padding .3s ease, box-shadow .3s ease, backdrop-filter .3s ease;
+  }
+  .site-header.scrolled{
+    background:rgba(28,15,9,0.82);
+    backdrop-filter:blur(14px);
+    padding:12px 0;
+    box-shadow:0 12px 30px -22px rgba(0,0,0,0.7);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:24px;
+    position:relative;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--font-display); font-size:1.3rem; font-weight:700;
+  }
+  .logo-icon{ width:36px; height:36px; flex-shrink:0; }
+  .logo em{ color:var(--caramel); font-weight:500; }
+ 
+  .nav{
+    display:flex; align-items:center; gap:34px;
+    font-weight:600; font-size:0.95rem;
+  }
+  .nav a{ position:relative; padding:4px 2px; opacity:0.85; transition:opacity .2s ease, color .2s ease; }
+  .nav a:hover{ opacity:1; color:var(--caramel-light); }
+  .nav-actions{ display:none; align-items:center; gap:12px; }
+ 
+  .header-actions{ display:flex; align-items:center; gap:16px; }
+ 
+  .nav-toggle{
+    display:none; flex-direction:column; justify-content:center; gap:5px;
+    width:36px; height:36px; padding:0; background:none; border:none; cursor:pointer;
+  }
+  .nav-toggle span{
+    display:block; width:100%; height:2px; background:var(--cream); border-radius:2px;
+    transition:transform .3s ease, opacity .3s ease;
+  }
+  .nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2){ opacity:0; }
+  .nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+ 
+  /* ---------- Hero ---------- */
+  .hero{ padding:64px 0 110px; overflow:hidden; }
+  .hero-inner{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:64px; align-items:center;
+  }
+  .hero-content{ max-width:560px; }
+  .hero h1{ margin-bottom:24px; }
+  .hero-text{
+    font-size:1.05rem; color:rgba(251,246,238,0.72); max-width:480px; margin-bottom:36px;
+  }
+  .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; }
+ 
+  .hero-visual{ position:relative; display:flex; justify-content:center; }
+  .hero-illustration{ width:100%; max-width:440px; }
+  .floater{ position:absolute; animation:float 7s ease-in-out infinite; }
+  .floater.f1{ width:64px; top:4%; left:2%; animation-duration:6s; }
+  .floater.f2{ width:46px; top:74%; left:-2%; animation-duration:8s; animation-delay:.6s; }
+  .floater.f3{ width:54px; top:8%; right:0%; animation-duration:7.5s; animation-delay:1.2s; }
+ 
+  @keyframes float{
+    0%,100%{ transform:translateY(0) rotate(0deg); }
+    50%{ transform:translateY(-16px) rotate(8deg); }
+  }
+ 
+  /* ---------- Sections ---------- */
+  .section{ padding:96px 0; }
+  .section-head{ max-width:640px; margin:0 auto 56px; text-align:center; }
+  .section-text{ color:rgba(251,246,238,0.68); font-size:1.02rem; margin-top:16px; }
+ 
+  .cookies, .about{ background:var(--cream-soft); color:var(--espresso-deep); }
+  .cookies h1, .cookies h2, .about h1, .about h2{ color:var(--espresso-deep); }
+  .cookies .eyebrow, .about .eyebrow{ color:var(--cocoa); }
+  .cookies .section-text, .about .section-text{ color:rgba(43,24,16,0.62); }
+ 
+  /* ---------- Grids & Cards ---------- */
+  .grid{ display:grid; gap:28px; }
+  .grid-cookies{ grid-template-columns:repeat(3, 1fr); }
+  .grid-combos{ grid-template-columns:repeat(2, 1fr); }
+ 
+  .card{
+    background:var(--cream); color:var(--espresso-deep);
+    border-radius:var(--radius); padding:32px;
+    display:flex; flex-direction:column;
+    box-shadow:0 22px 44px -32px rgba(0,0,0,0.55);
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 32px 64px -30px rgba(0,0,0,0.5);
+  }
+  .card-visual{
+    width:140px; max-width:100%; margin:0 auto 22px; aspect-ratio:1/1;
+  }
+  .card h3{ text-align:center; margin-bottom:8px; color:var(--espresso-deep); }
+  .card p.desc{
+    color:rgba(43,24,16,0.65); font-size:0.95rem; text-align:center;
+    flex-grow:1;
+  }
+  .card-footer{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:26px; padding-top:20px; border-top:1px solid rgba(43,24,16,0.1);
+    gap:12px;
+  }
+  .price{
+    font-family:var(--font-display); font-size:1.35rem; font-weight:700; color:var(--cocoa);
+  }
+ 
+  /* ---------- Combo cards ---------- */
+  .combo-card{ position:relative; }
+  .combo-card.featured{ border:2px solid var(--caramel); }
+  .badge{
+    position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+    background:var(--caramel); color:var(--espresso-deep);
+    font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.16em;
+    padding:8px 18px; border-radius:999px; white-space:nowrap;
+  }
+  .combo-icon{ width:160px; max-width:100%; margin:0 auto 22px; }
+  .combo-subtitle{
+    text-align:center; text-transform:uppercase; letter-spacing:0.12em;
+    font-size:0.78rem; font-weight:700; color:var(--cocoa); margin-bottom:10px;
+  }
+  .combo-footer{ align-items:flex-end; }
+  .price-group{ display:flex; flex-direction:column; gap:3px; }
+  .price-old{
+    text-decoration:line-through; font-size:0.9rem; opacity:0.5; font-weight:600;
+  }
+  .combo-savings{ font-size:0.8rem; font-weight:600; color:var(--cocoa); }
+ 
+  /* ---------- About ---------- */
+  .about{ text-align:center; }
+  .about-quote{
+    font-family:var(--font-display); font-style:italic; font-weight:500;
+    font-size:clamp(1.5rem, 3.2vw, 2.3rem);
+    color:var(--cocoa); max-width:760px; margin:0 auto 56px; line-height:1.45;
+  }
+  .values{
+    display:flex; justify-content:center; gap:56px; flex-wrap:wrap;
+  }
+  .value-item{
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+    max-width:190px; text-align:center;
+  }
+  .value-item .icon{
+    width:42px; height:42px; color:var(--caramel-deep);
+  }
+  .value-item h4{ color:var(--espresso-deep); }
+  .value-item p{ font-size:0.9rem; color:rgba(43,24,16,0.6); }
+ 
+  /* ---------- Footer ---------- */
+  .footer{ background:var(--espresso-deep); padding:80px 0 32px; }
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center;
+    gap:48px; flex-wrap:wrap; padding-bottom:48px;
+    border-bottom:1px solid rgba(251,246,238,0.08);
+  }
+  .footer-brand{ display:flex; flex-direction:column; gap:14px; max-width:320px; }
+  .footer-brand .logo{ font-size:1.5rem; }
+  .footer-brand p{ color:rgba(251,246,238,0.5); font-size:0.92rem; }
+  .footer-cta h2{ margin-bottom:22px; font-size:clamp(1.8rem, 3.4vw, 2.5rem); }
+  .footer-actions{ display:flex; gap:16px; flex-wrap:wrap; }
+  .footer-bottom{
+    padding-top:32px; text-align:center; font-size:0.85rem; color:rgba(251,246,238,0.4);
+  }
+  .footer-bottom a{ color:var(--caramel-light); font-weight:600; }
+ 
+  /* ---------- Reveal animation ---------- */
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+ 
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+    .reveal{ opacity:1; transform:none; }
+  }
+ 
+  /* ---------- Responsive ---------- */
+  @media (max-width: 968px){
+    .hero-inner{ grid-template-columns:1fr; gap:48px; }
+    .hero-content{ max-width:620px; }
+    .hero-visual{ order:-1; }
+    .hero-illustration{ max-width:300px; }
+    .grid-cookies{ grid-template-columns:repeat(2, 1fr); }
+  }
+ 
+  @media (max-width: 860px){
+    .nav{
+      position:absolute; top:calc(100% + 1px); left:0; right:0;
+      background:var(--espresso-deep); border-radius:0 0 20px 20px;
+      flex-direction:column; align-items:flex-start; gap:0;
+      max-height:0; overflow:hidden; padding:0 24px;
+      transition:max-height .35s ease, padding .35s ease;
+      box-shadow:0 20px 40px -30px rgba(0,0,0,0.8);
+    }
+    .nav.open{ max-height:400px; padding:12px 24px 26px; }
+    .nav a{ width:100%; padding:12px 0; border-bottom:1px solid rgba(251,246,238,0.08); }
+    .nav-actions{
+      display:flex; flex-wrap:wrap; gap:12px; padding-top:18px; width:100%;
+    }
+    .header-actions .btn-primary{ display:none; }
+    .nav-toggle{ display:flex; }
+  }
+ 
+  @media (max-width: 720px){
+    .section{ padding:72px 0; }
+    .hero{ padding:48px 0 72px; }
+    .grid-combos{ grid-template-columns:1fr; }
+    .values{ gap:36px; }
+  }
+ 
+  @media (max-width: 540px){
+    .grid-cookies{ grid-template-columns:1fr; }
+    .hero-actions{ flex-direction:column; align-items:stretch; }
+    .hero-actions .btn{ width:100%; }
+    .footer-inner{ flex-direction:column; align-items:flex-start; text-align:left; }
+    .footer-actions{ width:100%; }
+    .footer-actions .btn{ flex:1; justify-content:center; }
+    .floater.f1{ width:46px; }
+    .floater.f2{ width:34px; }
+    .floater.f3{ width:40px; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- Shared SVG symbols -->
+<svg style="display:none" aria-hidden="true">
+  <defs>
+    <symbol id="mini-cookie" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="18" fill="currentColor"/>
+      <circle cx="14" cy="13" r="2.3" fill="#3A1F14" opacity="0.85"/>
+      <circle cx="27" cy="15" r="1.9" fill="#3A1F14" opacity="0.85"/>
+      <circle cx="16" cy="26" r="2.1" fill="#3A1F14" opacity="0.85"/>
+      <circle cx="28" cy="27" r="1.7" fill="#3A1F14" opacity="0.85"/>
+      <circle cx="23" cy="20" r="1.6" fill="#3A1F14" opacity="0.85"/>
+    </symbol>
+    <symbol id="icon-logo" viewBox="0 0 40 40">
+      <path d="M20,3 C26,2.4 31.3,5 34.5,9.6 C37.8,14.2 38.7,19.7 36.9,25 C35.1,30.4 31,34.4 25.6,36.2 C20.3,38 14.7,37 10.2,33.7 C5.7,30.4 2.9,25.2 3.3,19.6 C3.7,14 6.9,8.7 11.7,5.8 C14.5,4.1 17.2,3.4 20,3 Z" fill="var(--caramel)"/>
+      <circle cx="14" cy="13" r="2.6" fill="var(--choc)"/>
+      <circle cx="25" cy="11" r="2.1" fill="var(--choc)"/>
+      <circle cx="12" cy="23" r="2" fill="var(--choc)"/>
+      <circle cx="24" cy="25" r="2.6" fill="var(--choc)"/>
+      <circle cx="20" cy="18" r="1.7" fill="var(--choc)"/>
+    </symbol>
+  </defs>
+</svg>
+ 
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#top" class="logo">
+      <svg class="logo-icon" viewBox="0 0 40 40" aria-hidden="true"><use href="#icon-logo"/></svg>
+      <span>Bakeworth  Cookies</span>
+    </a>
+ 
+    <nav class="nav" id="nav">
+      <a href="#cookies">Cookies</a>
+      <a href="#combos">Combos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-sm" href="https://wa.me/5531997635959" data-wa data-msg="Olá! Vim pelo site da Chunky &amp; Co e quero fazer um pedido 🍪" target="_blank" rel="noopener">Pedir no WhatsApp</a>
+        <a class="btn btn-outline btn-sm" href="https://www.instagram.com/rafaelfranca_kkz/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </nav>
+ 
+    <div class="header-actions">
+      <a class="btn btn-primary btn-sm" href="https://wa.me/5531997635959" data-wa data-msg="Olá! Vim pelo site da Chunky &amp; Co e quero fazer um pedido 🍪" target="_blank" rel="noopener">Pedir agora</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+ 
+<main>
+ 
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="top">
+    <div class="container hero-inner">
+      <div class="hero-content reveal">
+        <p class="eyebrow">Cookies artesanais, feitos à mão</p>
+        <h1>Cookies grossos, recheados e <em>impossíveis</em> de resistir</h1>
+        <p class="hero-text">
+          Na Chunky &amp; Co cada cookie nasce em pequenos lotes, com chocolate de verdade
+          e um recheio generoso que escorre por dentro. Crocante por fora, derretido por
+          dentro — exatamente como tem que ser.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="https://wa.me/5531997635959" data-wa data-msg="Olá! Vim pelo site da Chunky &amp; Co e quero fazer um pedido 🍪" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 1 1-3.8-7.1"/><path d="M21 4l-9.5 9.5"/><path d="M3 21l2.2-6.1A8.5 8.5 0 0 1 12.5 3"/></svg>
+            Pedir no WhatsApp
+          </a>
+          <a class="btn btn-outline btn-lg" href="https://www.instagram.com/rafaelfranca_kkz/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></svg>
+            Seguir no Instagram
+          </a>
+        </div>
+      </div>
+ 
+      <div class="hero-visual reveal">
+        <svg class="hero-illustration" viewBox="0 0 440 440" aria-hidden="true">
+          <!-- back cookie -->
+          <g transform="translate(150,130) scale(1.5)">
+            <path d="M101,14 C128,12 154,24 170,47 C187,70 192,98 183,125 C174,153 152,175 123,183 C95,191 65,185 43,167 C21,150 9,122 12,93 C15,65 32,38 58,23 C71,15 87,16 101,14 Z" fill="var(--caramel-deep)"/>
+          </g>
+          <!-- front cookie -->
+          <g transform="translate(14,46) scale(1.6)">
+            <path d="M101,14 C128,12 154,24 170,47 C187,70 192,98 183,125 C174,153 152,175 123,183 C95,191 65,185 43,167 C21,150 9,122 12,93 C15,65 32,38 58,23 C71,15 87,16 101,14 Z" fill="var(--caramel)"/>
+            <g fill="var(--choc)">
+              <path d="M70,52 L94,46 L101,69 L77,76 Z"/>
+              <path d="M55,108 L80,101 L87,126 L62,133 Z"/>
+              <path d="M120,116 L148,124 L141,150 L114,143 Z"/>
+              <path d="M96,86 L112,82 L117,98 L101,102 Z"/>
+            </g>
+            <g fill="#6E3F20">
+              <path d="M118,44 L144,53 L138,77 L113,69 Z"/>
+            </g>
+            <g fill="var(--cream)" opacity="0.85">
+              <circle cx="88" cy="134" r="3"/>
+              <circle cx="146" cy="96" r="2.4"/>
+              <circle cx="62" cy="80" r="2"/>
+              <circle cx="108" cy="158" r="2.6"/>
+            </g>
+            <!-- chocolate drip -->
+            <path d="M118,6 C125,0 136,1 140,10 C144,19 141,32 134,40 C129,46 120,45 116,37 C112,28 112,15 118,6 Z" fill="var(--choc)"/>
+            <circle cx="138" cy="48" r="4.5" fill="var(--choc)"/>
+          </g>
+        </svg>
+ 
+        <svg class="floater f1" viewBox="0 0 60 60" aria-hidden="true">
+          <rect x="8" y="8" width="44" height="44" rx="10" fill="var(--caramel-light)" transform="rotate(18 30 30)"/>
+          <circle cx="24" cy="26" r="3.5" fill="var(--choc)"/>
+          <circle cx="38" cy="34" r="3" fill="var(--choc)"/>
+        </svg>
+        <svg class="floater f2" viewBox="0 0 60 60" aria-hidden="true">
+          <circle cx="30" cy="30" r="24" fill="var(--cream)" opacity="0.92"/>
+          <circle cx="22" cy="24" r="3" fill="var(--choc)" opacity="0.8"/>
+          <circle cx="36" cy="30" r="2.4" fill="var(--choc)" opacity="0.8"/>
+          <circle cx="26" cy="38" r="2.6" fill="var(--choc)" opacity="0.8"/>
+        </svg>
+        <svg class="floater f3" viewBox="0 0 60 60" aria-hidden="true">
+          <rect x="10" y="10" width="40" height="40" rx="9" fill="var(--choc)" transform="rotate(-12 30 30)"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ===================== COOKIES ===================== -->
+  <section class="section cookies" id="cookies">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Linha clássica</p>
+        <h2>Nossos cookies</h2>
+        <p class="section-text">
+          Três receitas, um compromisso: recheio generoso em cada mordida.
+          Escolha o seu favorito — ou peça os três.
+        </p>
+      </div>
+ 
+      <div class="grid grid-cookies">
+ 
+        <!-- Cookie 1 -->
+        <article class="card reveal">
+          <div class="card-visual">
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <path d="M101,14 C128,12 154,24 170,47 C187,70 192,98 183,125 C174,153 152,175 123,183 C95,191 65,185 43,167 C21,150 9,122 12,93 C15,65 32,38 58,23 C71,15 87,16 101,14 Z" fill="#E5B27E"/>
+              <g fill="#4A2A16">
+                <path d="M70,52 L94,46 L101,69 L77,76 Z"/>
+                <path d="M120,116 L148,124 L141,150 L114,143 Z"/>
+                <path d="M96,86 L112,82 L117,98 L101,102 Z"/>
+              </g>
+              <g fill="#6E3F20">
+                <path d="M118,44 L144,53 L138,77 L113,69 Z"/>
+                <path d="M55,108 L80,101 L87,126 L62,133 Z"/>
+              </g>
+              <g fill="#FBF6EE" opacity="0.9">
+                <circle cx="88" cy="134" r="3"/>
+                <circle cx="146" cy="96" r="2.4"/>
+                <circle cx="62" cy="80" r="2"/>
+                <circle cx="108" cy="158" r="2.6"/>
+              </g>
+            </svg>
+          </div>
+          <h3>Cookie Tradicional</h3>
+          <p class="desc">Massa amanteigada com gotas generosas de chocolate ao leite e uma pitada de flor de sal por cima.</p>
+          <div class="card-footer">
+            <span class="price">R$ 12,00</span>
+            <a class="btn btn-primary btn-sm" href="https://wa.me/5531997635959" data-wa data-msg="Olá! Quero pedir o Cookie Chocolate Belga 🍪" target="_blank" rel="noopener">Pedir</a>
+          </div>
+        </article>
+ 
+        <!-- Cookie 2 -->
+        <article class="card reveal">
+          <div class="card-visual">
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <path d="M101,14 C128,12 154,24 170,47 C187,70 192,98 183,125 C174,153 152,175 123,183 C95,191 65,185 43,167 C21,150 9,122 12,93 C15,65 32,38 58,23 C71,15 87,16 101,14 Z" fill="#A8463B"/>
+              <g fill="#FBF6EE">
+                <path d="M64,58 C80,48 100,52 106,68 C112,84 100,96 84,96 C68,96 56,84 58,70 C59,65 60,61 64,58 Z"/>
+                <path d="M118,104 C136,98 154,106 158,122 C162,140 148,154 130,152 C112,150 102,136 106,120 C108,112 111,108 118,104 Z"/>
+              </g>
+              <g fill="#3A1F14">
+                <circle cx="58" cy="118" r="3.6"/>
+                <circle cx="140" cy="68" r="3"/>
+                <circle cx="98" cy="160" r="3"/>
+                <circle cx="150" cy="132" r="2.4"/>
+                <circle cx="128" cy="58" r="2.4"/>
+              </g>
+            </svg>
+          </div>
+          <h3>Red Velvet</h3>
+          <p class="desc">Massa aveludada de cacau e baunilha com núcleo cremoso de cream cheese — equilíbrio perfeito entre doce e ácido.</p>
+          <div class="card-footer">
+            <span class="price">R$ 13,00</span>
+            <a class="btn btn-primary btn-sm" href="https://wa.me/5531997635959" data-wa data-msg="Olá! Quero pedir o Cookie Red Velvet 🍪" target="_blank" rel="noopener">Pedir</a>
+          </div>
+        </article>
+ 
+        <!-- Cookie 3 -->
+        <article class="card reveal">
+          <div class="card-visual">
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <path d="M101,14 C128,12 154,24 170,47 C187,70 192,98 183,125 C174,153 152,175 123,183 C95,191 65,185 43,167 C21,150 9,122 12,93 C15,65 32,38 58,23 C71,15 87,16 101,14 Z" fill="#c27933"/>
+              <g fill="#4A2A16">
+                <path d="M70,52 L94,46 L101,69 L77,76 Z"/>
+                <path d="M120,116 L148,124 L141,150 L114,143 Z"/>
+                <path d="M96,86 L112,82 L117,98 L101,102 Z"/>
+              </g>
+              <g fill="#6E3F20">
+                <path d="M118,44 L144,53 L138,77 L113,69 Z"/>
+                <path d="M55,108 L80,101 L87,126 L62,133 Z"/>
+              </g>
+              <g fill="#FBF6EE" opacity="0.9">
+                <circle cx="88" cy="134" r="3"/>
+                <circle cx="146" cy="96" r="2.4"/>
+                <circle cx="62" cy="80" r="2"/>
+                <circle cx="108" cy="158" r="2.6"/>
+              </g>
+            </svg>
+          </div>
+          <h3> Nutelludo</h3>
+          <p class="desc">Massa de baunilha, recheada com pedaços de chocolate  e finalizada o creme de avelã mais famoso do Brasil.</p>
+          <div class="card-footer">
+            <span class="price">R$ 13,00</span>
+            <a class="btn btn-primary btn-sm" href="https://wa.me/5531997635959" data-wa data-msg="Olá! Quero pedir o Cookie Pistache &amp; Chocolate Branco 🍪" target="_blank" rel="noopener">Pedir</a>
+          </div>
+        </article>
+ 
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ===================== COMBOS ===================== -->
+  <section class="section combos" id="combos">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Pra compartilhar (ou não)</p>
+        <h2>Combos Chunky &amp; Co</h2>
+        <p class="section-text">
+          Monte sua caixa com os sabores que quiser e garanta um desconto especial.
+          Ideal pra presentear, surpreender ou simplesmente se cuidar.
+        </p>
+      </div>
+ 
+      <div class="grid grid-combos">
+ 
+        <!-- Combo 3 unidades -->
+        <article class="card combo-card reveal">
+          <div class="combo-icon">
+            <svg viewBox="0 0 140 60" aria-hidden="true">
+              <use href="#mini-cookie" x="0" y="10" width="40" height="40" style="color:#CE9760"/>
+              <use href="#mini-cookie" x="50" y="0" width="40" height="40" style="color:#A8463B"/>
+              <use href="#mini-cookie" x="100" y="10" width="40" height="40" style="color:#C3CD96"/>
+            </svg>
+          </div>
+          <p class="combo-subtitle">3 cookies à sua escolha</p>
+          <h3>Combo Trio</h3>
+          <p class="desc">Experimente os três sabores da casa — ou repita aquele que já é seu favorito. Vem em caixinha pronta pra presentear.</p>
+          <div class="card-footer combo-footer">
+            <div class="price-group">
+              <span class="price-old">R$ 39,00</span>
+              <span class="price">R$ 33,00</span>
+              <span class="combo-savings">Economia de R$ 6,00</span>
+            </div>
+            <a class="btn btn-primary btn-sm" href="https://wa.me/5531997635959" data-wa data-msg="Olá! Quero pedir o Combo Trio (3 cookies) 🍪" target="_blank" rel="noopener">Pedir</a>
+          </div>
+        </article>
+ 
+        <!-- Combo 6 unidades -->
+        <article class="card combo-card featured reveal">
+          <span class="badge">Mais pedido</span>
+          <div class="combo-icon">
+            <svg viewBox="0 0 140 120" aria-hidden="true">
+              <use href="#mini-cookie" x="0" y="6" width="40" height="40" style="color:#CE9760"/>
+              <use href="#mini-cookie" x="50" y="0" width="40" height="40" style="color:#A8463B"/>
+              <use href="#mini-cookie" x="100" y="6" width="40" height="40" style="color:#C3CD96"/>
+              <use href="#mini-cookie" x="0" y="68" width="40" height="40" style="color:#A8463B"/>
+              <use href="#mini-cookie" x="50" y="74" width="40" height="40" style="color:#C3CD96"/>
+              <use href="#mini-cookie" x="100" y="68" width="40" height="40" style="color:#CE9760"/>
+            </svg>
+          </div>
+          <p class="combo-subtitle">6 cookies à sua escolha</p>
+          <h3>Combo Caixa</h3>
+          <p class="desc">A caixa cheia da Chunky &amp; Co. Perfeita pra dividir com quem você ama — ou guardar todos pra você, sem julgamentos.</p>
+          <div class="card-footer combo-footer">
+            <div class="price-group">
+              <span class="price-old">R$ 75,00</span>
+              <span class="price">R$ 61,00</span>
+              <span class="combo-savings">Economia de R$ 13,00</span>
+            </div>
+            <a class="btn btn-primary btn-sm" href="https://wa.me/5531997635959" data-wa data-msg="Olá! Quero pedir o Combo Caixa (6 cookies) 🍪" target="_blank" rel="noopener">Pedir</a>
+          </div>
+        </article>
+ 
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ===================== ABOUT ===================== -->
+  <section class="section about" id="sobre">
+    <div class="container">
+      <div class="reveal">
+        <p class="eyebrow">Sobre a Chunky &amp; Co</p>
+        <p class="about-quote">
+          “Acreditamos que um bom cookie não precisa ser perfeito — precisa ser generoso,
+          quentinho e feito com a receita certa de carinho (e muito chocolate).”
+        </p>
+      </div>
+ 
+      <div class="values reveal">
+        <div class="value-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="4" y="4" width="16" height="16" rx="3" transform="rotate(15 12 12)"/>
+            <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
+          </svg>
+          <h4>Recheio generoso</h4>
+          <p>Chocolate de verdade em cada mordida, sem economia.</p>
+        </div>
+        <div class="value-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3.5 2"/>
+          </svg>
+          <h4>Sempre fresquinho</h4>
+          <p>Assados em pequenos lotes, no mesmo dia do pedido.</p>
+        </div>
+        <div class="value-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 20s-7-4.4-7-9.5C5 7.5 7 6 9 6c1.4 0 2.6.8 3 2 .4-1.2 1.6-2 3-2 2 0 4 1.5 4 4.5C19 15.6 12 20 12 20z"/>
+          </svg>
+          <h4>Feito à mão</h4>
+          <p>Sem fórmulas industriais. Só receita boa e carinho.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+</main>
+ 
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer" id="contato">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#top" class="logo">
+          <svg class="logo-icon" viewBox="0 0 40 40" aria-hidden="true"><use href="#icon-logo"/></svg>
+          <span>Chunky <em>&amp;</em> Co</span>
+        </a>
+        <p>Cookies artesanais, recheados de carinho (e chocolate). Feitos à mão, em pequenos lotes.</p>
+      </div>
+ 
+      <div class="footer-cta">
+        <h2>Vamos adoçar<br>o seu dia?</h2>
+        <div class="footer-actions">
+          <a class="btn btn-primary btn-lg" href="https://wa.me/5531997635959" data-wa data-msg="Olá! Quero fazer um pedido na Chunky &amp; Co 🍪" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 1 1-3.8-7.1"/><path d="M21 4l-9.5 9.5"/><path d="M3 21l2.2-6.1A8.5 8.5 0 0 1 12.5 3"/></svg>
+            (31) 99763-5959
+          </a>
+          <a class="btn btn-outline btn-lg" href="https://www.instagram.com/rafaelfranca_kkz/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></svg>
+            @rafaelfranca_kkz
+          </a>
+        </div>
+      </div>
+    </div>
+ 
+    <p class="footer-bottom">
+      © 2026 Chunky &amp; Co. Cookies artesanais feitos com 🍪 e chocolate de verdade.
+      Peça pelo <a href="https://wa.me/5531997635959" data-wa data-msg="Olá! Quero fazer um pedido na Chunky &amp; Co 🍪" target="_blank" rel="noopener">WhatsApp</a>
+      ou siga no <a href="https://www.instagram.com/rafaelfranca_kkz/" target="_blank" rel="noopener">Instagram</a>.
+    </p>
+  </div>
+</footer>
+ 
+<script>
+  // Build WhatsApp links with properly encoded messages
+  document.querySelectorAll('[data-wa]').forEach(function(el){
+    var msg = el.getAttribute('data-msg') || '';
+    el.setAttribute('href', 'https://wa.me/5531997635959?text=' + encodeURIComponent(msg));
+  });
+ 
+  // Mobile nav toggle
+  var navToggle = document.getElementById('navToggle');
+  var nav = document.getElementById('nav');
+  navToggle.addEventListener('click', function(){
+    var isOpen = nav.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  nav.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      nav.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+ 
+  // Header scroll state
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function(){
+    header.classList.toggle('scrolled', window.scrollY > 12);
+  }, { passive: true });
+ 
+  // Reveal on scroll
+  if ('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); });
+  }
+</script>
+ 
+</body>
+</html>
+ 
